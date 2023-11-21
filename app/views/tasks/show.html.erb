@@ -1,5 +1,21 @@
-<h1>Détails de la tâche</h1>
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<div class="container">
+  <h1 class="task-title"><%= @task.title %></h1>
 
-<p><strong>Titre :</strong> <%= @task.title %></p>
-<p><strong>Détails :</strong> <%= @task.details %></p>
-<p><strong>Complétée :</strong> <%= @task.completed ? 'Oui' : 'Non' %></p>
+<p class="task-details"><strong>Détails :</strong> <%= @task.details %></p>
+<% if @task.completed %>
+  <p class="task-status"><strong>Statut :</strong> Terminée</p>
+<% else %>
+  <p class="task-status"><strong>Statut :</strong> En cours</p>
+<% end %>
+
+<%= link_to "Modifier", edit_task_path(@task), class: "btn btn-primary edit-task-link" %> |
+<%= link_to "Retour à la liste des tâches", tasks_path, class: "btn btn-info back-to-tasks-link" %> |
+<%= link_to "Supprimer",
+            task_path(@task),
+            method: :delete,
+            data: { turbo_method: :delete, turbo_confirm: "Êtes-vous certains ?" },
+            class: "btn btn-danger delete-task-link" %>
+</div>
