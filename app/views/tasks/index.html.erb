@@ -1,0 +1,11 @@
+<h1>Liste des tâches</h1>
+
+<% if @tasks.any? %>
+  <ul>
+    <% @tasks.each do |task| %>
+      <li><%= task.title %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Aucune tâche disponible pour le moment.</p>
+<% end %>
